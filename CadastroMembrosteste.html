@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* Paleta de Cores */
+  :root {
+    --azul-marinho: #001f3f;
+    --azul-claro: #3498db;
+    --azul-escuro: #2c3e50;
+    --cinza-claro: #ecf0f1;
+    --cinza-escuro: #34495e;
+  }
+
+  /* Estilos Gerais */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, var(--azul-claro), var(--azul-escuro));
+    color: var(--azul-marinho);
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Cabeçalho */
+  header {
+    background-color: var(--azul-marinho);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  }
+
+  /* Botões */
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 4px;
+  }
+
+  .button-primary {
+    background-color: var(--azul-marinho);
+  }
+
+  .button-secondary {
+    background-color: var(--azul-claro);
+  }
+
+  /* Formulário */
+  form {
+    padding: 20px;
+    border-radius: 4px;
+    background-color: var(--cinza-claro);
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="date"],
+  select,
+  input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--cinza-escuro);
+    border-radius: 4px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+    border-radius: 4px;
+  }
+ form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+</style>
+<title>Cadastro de Atores Veterinários</title>
+</head>
+<body>
+  <header>
+    <h1>Cadastro de Atores Veterinários</h1>
+  </header>
+  <div class="container">
+    <form id="cadastroForm">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" required>
+      
+      <label for="funcao">Função:</label>
+      <select id="funcao" name="funcao" required>
+        <option value="cirurgiao">Cirurgião</option>
+        <option value="veterinario">Veterinário</option>
+        <option value="veterinario">Estágiario</option>
+        <option value="veterinario">Responsável por exames laboratoriais</option>
+        <option value="outros">Outros</option>
+      </select>
+       <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="telefone">Telefone:</label>
+      <input type="tel" id="telefone" name="telefone" required>
+
+      <label for="dataNascimento">Data de Nascimento:</label>
+      <input type="date" id="dataNascimento" name="dataNascimento" required>
+      
+      <label for="foto">Escolher Foto:</label>
+      <input type="file" id="foto" name="foto">
+      
+      <button type="submit" class="button button-primary">Cadastrar</button>
+    </form>
+    <div id="resultado"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('cadastroForm');
+    const resultadoDiv = document.getElementById('resultado');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const nome = form.nome.value;
+      const funcao = form.funcao.value;
+const email = form.email.value;
+      const telefone = form.telefone.value;
+      const dataNascimento = form.dataNascimento.value;
+      const foto = form.foto.files[0]; // Captura o arquivo de imagem
+
+      const mensagem = `
+        <p>Nome: ${nome}</p>
+        <p>Função: ${funcao}</p>
+        <img src="${URL.createObjectURL(foto)}" alt="Foto do usuário">
+      `;
+
+      resultadoDiv.innerHTML = mensagem;
+    });
+  </script>
+</body>
+</html>
